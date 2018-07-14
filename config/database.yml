@@ -28,4 +28,7 @@ uat:
 
 production:
   <<: *default
+  url:  <%=  ENV['MYSQL2_URL'] %>
   database: <%=  ENV['MYSQL_HOST'] %>
+  # username: <%= ENV['database_username'] %>
+  # password: <%= ENV['database_password'] %>
