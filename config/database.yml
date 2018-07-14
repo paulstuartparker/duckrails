@@ -1,13 +1,8 @@
-
-# SQLite version 3.x
-#   gem install sqlite3
-#
-#   Ensure the SQLite 3 gem is defined in your Gemfile
-#   gem 'sqlite3'
-#
 default: &default
   adapter: mysql2
   encoding: utf8
+  pool: 5
+
 
 development:
   <<: *default
@@ -28,13 +23,9 @@ test: &test
   database: db/test.sqlite3
 
 uat:
-  adapter: <%=  ENV['DATABASE_ADAPTER'] || 'mysql2' %>
-  url: <%=  ENV['DATABASE_URL'] %>
-  encoding: utf8
-  pool: <%=  ENV['DATABASE_POOL_SIZE'] || 20 %>
+  <<: *default
+  url: <%=  ENV['MYSQL_HOST'] %>
 
 production:
-  adapter: <%=  ENV['DATABASE_ADAPTER'] || 'mysql2' %>
-  url: <%=  ENV['DATABASE_URL'] %>
-  encoding: utf8
-  pool: <%=  ENV['DATABASE_POOL_SIZE'] || 20 %>
+  <<: *default
+  url: <%=  ENV['MYSQL_HOST'] %>
