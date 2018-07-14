@@ -28,5 +28,20 @@ module Duckrails
     config.middleware.insert_after "Rails::Rack::Logger", "Duckrails::Synchronizer"
 
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
+
+    # STDOUT logging for Rails 4
+# For Rails 5 see https://github.com/heroku/rails_12factor#rails-5-and-beyond
+  if ENV["RAILS_LOG_TO_STDOUT"].present?
+    log_level = ([(ENV['LOG_LEVEL'] || ::Rails.application.config.log_level).to_s.upcase, "INFO"] & %w[DEBUG INFO WARN ERROR FATAL UNKNOWN]).compact.first
+    logger       = ::ActiveSupport::Logger.new(STDOUT)
+    logger.formatter = proc do |severity, datetime, progname, msg|
+      "#{datetime} #{severity}: #{String === msg ? msg : msg.inspect}\n"
+    end
+    logger       = ActiveSupport::TaggedLogging.new(logger) if defined?(ActiveSupport::TaggedLogging)
+    logger.level = ::ActiveSupport::Logger.const_get(log_level)
+    config.logger = logger
+
+    STDOUT.sync = true
+  end
   end
 end
