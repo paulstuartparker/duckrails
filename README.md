@@ -1,7 +1,7 @@
 # DuckRails [![GitHub version](https://badge.fury.io/gh/iridakos%2Fduckrails.svg?a=2)](https://badge.fury.io/gh/iridakos%2Fduckrails?a=1) [![Build Status](https://travis-ci.org/iridakos/duckrails.svg?branch=master)](https://travis-ci.org/iridakos/duckrails)
 
 DuckRails is a development tool.
-
+Yes.
 Its main purpose is to allow developers to quickly mock API endpoints that for many possible reasons they can't reach at a specific time.
 
 > If it looks like a duck, walks like a duck and quacks like a duck, then it's a duck :duck:
