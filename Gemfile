@@ -13,6 +13,7 @@ gem 'rest-client'
 gem 'libxml-ruby'
 gem 'mysql2', '< 0.5'
 gem 'puma'
+gem 'foreman'
 
 
 group :development, :test do
