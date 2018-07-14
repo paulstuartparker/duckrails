@@ -11,8 +11,9 @@ gem 'cocoon'
 gem 'kaminari'
 gem 'rest-client'
 gem 'libxml-ruby'
-gem 'sqlite3'
+gem 'mysql2', '< 0.5'
 gem 'puma'
+
 
 group :development, :test do
   gem 'byebug'
