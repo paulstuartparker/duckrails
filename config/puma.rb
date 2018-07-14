@@ -1,10 +1,20 @@
-workers ENV.fetch("PUMA_WORKERS") { 3 }
-port ENV.fetch("PUMA_LISTEN_PORT") { 3000 }
+# frozen_string_literal: true
+# Puma can serve each request in a thread from an internal thread pool.
+# The `threads` method setting takes two numbers a minimum and maximum.
+# Any libraries that use thread pools should be configured to match
+# the maximum value specified for Puma. Default is set to 5 threads for minimum
+# and maximum, this matches the default thread size of Active Record.
+#
+threads_count = ENV.fetch('RAILS_MAX_THREADS') { 5 }.to_i
+threads threads_count, threads_count
 
-preload_app!
+# Specifies the `port` that Puma will listen on to receive requests, default is 3000.
+#
+port        ENV.fetch('PORT') { 3000 }
 
-on_worker_boot do
-  ActiveSupport.on_load(:active_record) do
-    ActiveRecord::Base.establish_connection
-  end
-end
+# Specifies the `environment` that Puma will run in.
+#
+environment ENV.fetch('RAILS_ENV') { 'development' }
+
+# Allow puma to be restarted by `rails restart` command.
+plugin :tmp_restart
