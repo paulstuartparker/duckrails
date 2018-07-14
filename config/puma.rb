@@ -1,5 +1,5 @@
 workers ENV.fetch("PUMA_WORKERS") { 3 }
-port ENV.fetch("PUMA_LISTEN_PORT") { 5050 }
+port ENV.fetch("PUMA_LISTEN_PORT") { 3000 }
 
 preload_app!
 
